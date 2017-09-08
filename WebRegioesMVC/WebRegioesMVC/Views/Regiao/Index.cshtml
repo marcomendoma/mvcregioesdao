@@ -1,0 +1,76 @@
+﻿@model RegioesADO.Model.Regiao
+
+@{
+    ViewBag.Title = "Cadastro de Regiões";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Pessoa</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado.UF , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SelecaoId", String.Empty)
+                @Html.ValidationMessageFor(model => model.idRegiao)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Inserir" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table" id="tblRegioes">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado.UF)
+            </th>
+            <th>
+                @Html.DisplayName("Região")
+            </th>
+            <th>
+                @Html.DisplayName("Situação")
+            </th>
+            <th>
+                @Html.DisplayName("Ações")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.regioes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado.UF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idRegiao }) |
+                    @Html.ActionLink("Inativar", "Edit", new { id = item.idRegiao }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
