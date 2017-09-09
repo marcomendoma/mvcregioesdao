@@ -29,6 +29,7 @@ declare @cSql varchar(1000)
 
 set @cSql = ' select 
 					rg.idregiao,
+					rg.idestado,
 					uf.descricao uf,
 					rg.descricao regiao '
 					
