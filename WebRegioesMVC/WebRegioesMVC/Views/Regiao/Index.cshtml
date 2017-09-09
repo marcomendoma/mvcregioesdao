@@ -4,19 +4,19 @@
     ViewBag.Title = "Cadastro de Regiões";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "Regiao", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Pessoa</h4>
+        <h4>@ViewBag.Title</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Estado.UF , htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Estado.UF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SelecaoId", String.Empty)
-                @Html.ValidationMessageFor(model => model.idRegiao)
+                @Html.DropDownList("SelecaoId")
+                @*@Html.ValidationMessageFor(model => model.idRegiao)*@
             </div>
         </div>
 

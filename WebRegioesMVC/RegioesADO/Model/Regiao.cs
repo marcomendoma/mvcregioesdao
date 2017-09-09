@@ -12,8 +12,13 @@ namespace RegioesADO.Model
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Ativo da região é campo obrigatório.")]
-        public bool Ativo { get; set; }
+        public string Ativo { get; set; }
 
-        public IEnumerable<Regiao> regioes { get; set; }
+        public List<Regiao> regioes { get; set; }
+
+        public Regiao()
+        {
+            regioes = new List<Regiao>();
+        }
     }
 }

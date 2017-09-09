@@ -23,7 +23,13 @@ namespace RegioesADO.ADO
             {
                 regiao.idRegiao = long.Parse(rd["idregiao"].ToString());
                 regiao.Descricao = rd["regiao"].ToString();
-                regiao.Ativo = bool.Parse(rd["situacao"].ToString());
+                regiao.Ativo = rd["situacao"].ToString() == "0" ? "Ativo" : "Inativo";
+
+                Estado estado = new Estado();
+                estado.idEstado = long.Parse(rd["idestado"].ToString());
+                estado.UF = rd["uf"].ToString();
+
+                regiao.Estado = estado;
             }
             catch (Exception ex)
             {
@@ -41,7 +47,13 @@ namespace RegioesADO.ADO
                 {
                     regiao.idRegiao = long.Parse(rd["idregiao"].ToString());
                     regiao.Descricao = rd["regiao"].ToString();
-                    regiao.Ativo = bool.Parse(rd["situacao"].ToString());
+                    regiao.Ativo = rd["situacao"].ToString() == "0" ? "Ativo" : "Inativo";
+
+                    Estado estado = new Estado();
+                    estado.idEstado = long.Parse(rd["idestado"].ToString());
+                    estado.UF = rd["uf"].ToString();
+
+                    regiao.Estado = estado;
 
                     regioes.Add(regiao);
                 }

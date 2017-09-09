@@ -1,62 +1,59 @@
 ﻿using System.Web.Mvc;
 
 using RegioesADO.ADO;
+using RegioesADO.Model;
 
 namespace WebRegioesMVC.Controllers
 {
     public class RegiaoController : Controller
     {
         private RegiaoDAO regiaoDAO = new RegiaoDAO();
+        private Regiao regiao = new Regiao();
 
-        // GET: Regiao
         public ActionResult Index()
         {
-            ViewBag.RegiaoId = new SelectList(regiaoDAO.findAll(), "id", "Regiao");
+            ViewBag.SelecaoId = new SelectList(regiaoDAO.findAll(), "estado.idEstado", "estado.uf");
 
-            return View(regiaoDAO.findAll());
+            regiao.regioes = regiaoDAO.findAll();
+
+            return View(regiao);
         }
 
-        // GET: Regiao/Details/5
-        public ActionResult Details(long id)
-        {
-            return View(regiaoDAO.findOne(id));
-        }
-
-        // GET: Regiao/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Regiao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Save(Regiao regiao)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            //if (ModelState.IsValid)
+            //{
+                new RegiaoDAO().addNew(regiao);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                Regiao regiaoNova = new Regiao(); 
+
+                regiaoNova.regioes = regiaoDAO.findAll();
+
+                return View("Index", regiaoNova);
+            //}
+            //else
+            //    return View("Cadastro", new Regiao());
         }
 
-        // GET: Regiao/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Regiao/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                Regiao regiaoUpdate = new Regiao();
+
+                regiaoUpdate = regiaoDAO.findOne(id);
+
+                Estado estado = new Estado();
+                estado.UF = collection.GetValue("UF").ToString();
+
+                regiao.regioes = regiaoDAO.findAll();
 
                 return RedirectToAction("Index");
             }
@@ -66,20 +63,16 @@ namespace WebRegioesMVC.Controllers
             }
         }
 
-        // GET: Regiao/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Regiao/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch
