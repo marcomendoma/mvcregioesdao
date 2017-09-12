@@ -187,3 +187,4 @@ D:\Teste NeoIT\WebRegioesMVC\WebRegioesMVC\bin\System.Xml.XPath.XDocument.dll
 D:\Teste NeoIT\WebRegioesMVC\WebRegioesMVC\bin\RegioesADO.dll
 D:\Teste NeoIT\WebRegioesMVC\WebRegioesMVC\bin\RegioesADO.pdb
 D:\Teste NeoIT\WebRegioesMVC\WebRegioesMVC\bin\System.Data.SqlClient.dll
+D:\Teste NeoIT\WebRegioesMVC\WebRegioesMVC\bin\WebGridMvc.dll

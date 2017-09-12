@@ -9,6 +9,9 @@ namespace RegioesADO.ADO
         //Para a utilização do ADO com Sqlserver
         //Install-Package System.Data.SqlClient -Version 4.4.0
 
+        //Instalar o webgrid 
+        //Install-Package WebGridMvc -Version 1.0.0
+
         private string strCon = "Data Source=.\\SQLEXPRESS2014;Initial Catalog=teste;Integrated Security=True";
 
         public SqlConnection RetornaCon()
